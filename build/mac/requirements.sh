@@ -2,6 +2,6 @@
 
 set -xue
 
-brew install cmake
+# brew install cmake
 
 set +xue
