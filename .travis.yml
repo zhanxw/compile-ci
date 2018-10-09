@@ -1,0 +1,27 @@
+language: cpp
+matrix:
+  include:
+  - env: PLATFORM='linux64'
+    os: linux
+    dist: trusty
+    sudo: required
+    compiler: gcc
+  - env: PLATFORM='windows64'
+    os: linux
+    dist: trusty
+    sudo: required
+    compiler: gcc
+  - env: PLATFORM='macos'
+    os: osx
+    osx_image: xcode8
+    compiler: clang
+before_install:
+  - TARGET="${PLATFORM::${#PLATFORM}-2}"
+  - "./build/${TARGET}/requirements.sh"
+install:
+  - source ./build/${TARGET}/build.sh
+script:
+  - echo "Nothing."
+before_deploy:
+  - mkdir -p dist
+  - "./build/${TARGET}/package.sh"
