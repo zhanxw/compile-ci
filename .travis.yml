@@ -16,12 +16,19 @@ matrix:
     osx_image: xcode8
     compiler: clang
 before_install:
-  - TARGET="${PLATFORM::${#PLATFORM}-2}"
-  - "./build/${TARGET}/requirements.sh"
+- TARGET="${PLATFORM::${#PLATFORM}-2}"
+- "./build/${TARGET}/requirements.sh"
 install:
-  - source ./build/${TARGET}/build.sh
+- source ./build/${TARGET}/build.sh
 script:
-  - echo "Nothing."
+- echo "Nothing."
 before_deploy:
-  - mkdir -p dist
-  - "./build/${TARGET}/package.sh"
+- mkdir -p dist
+- "./build/${TARGET}/package.sh"
+deploy:
+  provider: releases
+  api_key:
+    secure: lUYj9rCGhA+qedmlgcOOl/Fp+Fg/7kn3+hMz2LqZ/nt/MqSXX/SGR0R1+1/XJFDkGMzWbsgMqqcAD3Wc2i9d2iPQlruN9Y9GbLfxkqCnheBenBQLupZnpd0CGPQUXJ/BrAC7CqjMvy2i8VrHrOTYXTi6l6UJc9B749s3YGtNDmdP+27R2tqQSK+bYdOt98mJNXOcQfbUXHXgh7Bs0EAp5c71FxvZOIcYNRSeU6A4vAQm1OksiYyCBMihRScLGmEXgb/A7kdK/cWY/IAQre1qDJmzLcFXKTNMDhvj7J+tIf6Og3glOOVfv0lgg0E+5+6AVuoE+7/oHimGun8MKM9cTbNT8sElYLmvWq1zAShiLA/YG4s1aiMkSMc/M0oFHggRfpE18wNCATPg8SGn0LdvjQirVSevpFfY2vo4kaJGmPthdoEO+0T3P1h4xcHulpVkGaTvRrjDSxu2YsbJQoxiYWA13vDQonmCQpcsZ+o7CEeNC7IUyUnFx5e5QlqN630D+fyJnBzVGSx+grvJh+iVos1LO6LBD5FhCl9ZZxuyiEyXYphh5FSQ1X8sXJ07yMy0PfBcgT0rinaDAwYPKIK/1H5ZcHnLyHb1/RVbAXCkRr+6yzeJBrAD2if8TdDeOWSCOnK4CJ5itn5Yg/FTN9avB6/7vrgbe7ip+Jd6GWdA4GI=
+  file: executable/main
+  on:
+    repo: zhanxw/compile-ci
