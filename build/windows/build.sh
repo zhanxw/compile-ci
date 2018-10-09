@@ -14,12 +14,11 @@ fi
 
 #${MXE_DIR}/usr/bin/${MXE_TARGET}-cmake . -Bbuild-dir
 #cmake --build build-dir --config Release
-CROSS=${MXE_DIR}/usr/bin/
-CC=$(CROSS)gcc
-CXX=$(CROSS)g++
-LD=$(CROSS)ld
-AR=$(CROSS)ar
-PKG_CONFIG=$(CROSS)pkg-config
-make CROSS=i686-w64-mingw32.static-
+export CC=${MXE_DIR}/usr/bin/i686-w64-mingw32.static-gcc
+export CXX=${MXE_DIR}/usr/bin/i686-w64-mingw32.static-g++
+export LD=${MXE_DIR}/usr/bin/i686-w64-mingw32.static-ld
+export AR=${MXE_DIR}/usr/bin/i686-w64-mingw32.static-ar
+export PKG_CONFIG=${MXE_DIR}/usr/bin/i686-w64-mingw32.static-pkg-config
+make CROSS=${MXE_DIR}/usr/bin/i686-w64-mingw32.static-
 
 set +xue
